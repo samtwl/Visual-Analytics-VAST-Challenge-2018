@@ -1,7 +1,7 @@
 ![1000px-Pitiful_Pipit](https://user-images.githubusercontent.com/50171205/59179798-bd126c80-8b95-11e9-9d68-c11edd4c64fd.png)
 
 # Visual-Analytics-VAST-Challenge-2018
-This repository contains the exploratory data analysis on the VAST challenge 2018 data.
+This repository contains the exploratory data analysis on the VAST challenge 2018 data. The link to the challenge is: http://www.vacommunity.org/VAST+Challenge+2018+MC1
 
 ## Overview
 The VAST Challenge analysis results from 2017 suggested that the Kasios Furniture manufacturing company may have contributed to the decline in number of nesting Rose-Crested Blue Pipit from the Boonsong Lekagul Nature Preserve. However, Kasios dismissed the analysis and provided a set of Pipit bird calls with locations of where they were recorded to establish their claim that the analysis result was flawed.
