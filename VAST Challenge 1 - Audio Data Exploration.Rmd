@@ -1,0 +1,345 @@
+---
+title: "VAST Challenge 1"
+output: html_document
+---
+
+#Loading and Installing Required Packages
+
+```{r}
+packages = c('ggplot2', 'gtable', 'grid', 'tuneR', 'audio', 'soundgen', 'warbleR')
+
+for(p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p, character.only = T)
+}
+```
+
+#Converting mp3 files of Actual Rose-Crested Blue Pipits recordings to wav files
+
+```{r}
+#Green_Song
+#162563, 277952, 293914, 377874, 30397
+
+realpipitgreensong1 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-162563.mp3")
+#writeWave(realpipitgreensong1, "realpipitgreensong1.wav", extensible=FALSE)
+
+realpipitgreensong2 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-277952.mp3")
+#writeWave(realpipitgreensong2, "realpipitgreensong2.wav", extensible=FALSE)
+
+realpipitgreensong3 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-293914.mp3")
+#writeWave(realpipitgreensong3, "realpipitgreensong3.wav", extensible=FALSE)
+
+realpipitgreensong4 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-377874.mp3")
+#writeWave(realpipitgreensong4, "realpipitgreensong4.wav", extensible=FALSE)
+
+realpipitgreensong5 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-30397.mp3")
+#writeWave(realpipitgreensong5, "realpipitgreensong5.wav", extensible=FALSE)
+
+#Green_Call
+#181907, 111775, 162566, 368492, 298739
+realpipitgreencall1 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-181907.mp3")
+#writeWave(realpipitgreencall1, "realpipitgreencall1.wav", extensible=FALSE)
+
+realpipitgreencall2 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-111775.mp3")
+#writeWave(realpipitgreencall2, "realpipitgreencall2.wav", extensible=FALSE)
+
+realpipitgreencall3 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-293916.mp3")
+#writeWave(realpipitgreencall3, "realpipitgreencall3.wav", extensible=FALSE)
+
+realpipitgreencall4 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-368492.mp3")
+#writeWave(realpipitgreencall4, "realpipitgreencall4.wav", extensible=FALSE)
+
+realpipitgreencall5 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-298739.mp3")
+#writeWave(realpipitgreencall5, "realpipitgreencall5.wav", extensible=FALSE)
+
+#Red_Song
+#162564, 138985, 405548
+realpipitredsong1 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-162564.mp3")
+#writeWave(realpipitredsong1, "realpipitredsong1.wav", extensible=FALSE)
+
+realpipitredsong2 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-138985.mp3")
+#writeWave(realpipitredsong2, "realpipitredsong2.wav", extensible=FALSE)
+
+realpipitredsong3 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-405548.mp3")
+#writeWave(realpipitredsong3, "realpipitredsong3.wav", extensible=FALSE)
+
+#Red_call
+#162567, 162569, 368493
+realpipitredcall1 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-162567.mp3")
+#writeWave(realpipitredcall1, "realpipitredcall1.wav", extensible=FALSE)
+
+realpipitredcall2 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-162569.mp3")
+#writeWave(realpipitredcall2, "realpipitredcall2.wav", extensible=FALSE)
+
+realpipitredcall3 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-368493.mp3")
+#writeWave(realpipitredcall3, "realpipitredcall3.wav", extensible=FALSE)
+
+#Purple_Song
+#134557, 152971
+realpipitpurplesong1 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-134557.mp3")
+#writeWave(realpipitpurplesong1, "realpipitpurplesong1.wav", extensible=FALSE)
+
+realpipitpurplesong2 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-152971.mp3")
+#writeWave(realpipitpurplesong2, "realpipitpurplesong2.wav", extensible=FALSE)
+
+#Purple_Call
+#405901
+realpipitpurplecall1 <- readMP3("data/ALL BIRDS/Rose-Crested-Blue-Pipit-405901.mp3")
+#writeWave(realpipitpurplecall1, "realpipitpurplecall1.wav", extensible=FALSE)
+
+```
+
+#Commands to Play Converted Wav Files for test recordings
+
+```{r}
+play(load.wave("realpipitgreensong1.wav"))
+```
+
+#Plotting Actual Pipit Recordings (Green Song)
+
+```{r}
+spectro(realpipitgreensong1,cont=TRUE, scale=FALSE, main = "Green Song 1: 162563")
+
+spectro(realpipitgreensong2,cont=TRUE, scale=FALSE, main = "Green Song 2: 277952")
+
+spectro(realpipitgreensong3,cont=TRUE, scale=FALSE, main = "Green Song 3: 293914")
+
+spectro(realpipitgreensong4,cont=TRUE, scale=FALSE, main = "Green Song 4: 377874")
+
+spectro(realpipitgreensong5,cont=TRUE, scale=FALSE, main = "Green Song 5: 30397")
+
+spectro(realpipitgreensong1,osc=TRUE)
+
+spectro(realpipitgreensong2,osc=TRUE)
+
+spectro(realpipitgreensong3,osc=TRUE)
+
+spectro(realpipitgreensong4,osc=TRUE)
+
+spectro(realpipitgreensong5,osc=TRUE)
+```
+
+#Plotting Actual Pipit Recordings (Green Call)
+
+```{r}
+spectro(realpipitgreencall1,cont=TRUE, scale=FALSE, main = "Green Call 1: 181907")
+
+spectro(realpipitgreencall2,cont=TRUE, scale=FALSE, main = "Green Call 2: 111775")
+
+spectro(realpipitgreencall3,cont=TRUE, scale=FALSE, main = "Green Call 3: 293916")
+
+spectro(realpipitgreencall4,cont=TRUE, scale=FALSE, main = "Green Call 4: 368492")
+
+spectro(realpipitgreencall5,cont=TRUE, scale=FALSE, main = "Green Call 5: 298739")
+
+spectro(realpipitgreencall1,osc=TRUE)
+
+spectro(realpipitgreencall2,osc=TRUE)
+
+spectro(realpipitgreencall3,osc=TRUE)
+
+spectro(realpipitgreencall4,osc=TRUE)
+
+spectro(realpipitgreencall5,osc=TRUE)
+```
+
+#Plotting Actual Pipit Recordings (Red Song)
+
+```{r}
+spectro(realpipitredsong1,cont=TRUE, scale=FALSE, main = "Red Song 1: 162564")
+
+spectro(realpipitredsong2,cont=TRUE, scale=FALSE, main = "Red Song 2: 138985")
+
+spectro(realpipitredsong3,cont=TRUE, scale=FALSE, main = "Red Song 3: 405548")
+
+spectro(realpipitredsong1,osc=TRUE)
+
+spectro(realpipitredsong2,osc=TRUE)
+
+spectro(realpipitredsong3,osc=TRUE)
+
+```
+
+#Plotting Actual Pipit Recordings (Red Call)
+
+```{r}
+spectro(realpipitredcall1,cont=TRUE, scale=FALSE, main = "Red Call 1: 162567")
+
+spectro(realpipitredcall2,cont=TRUE, scale=FALSE, main = "Red Call 2: 162569")
+
+spectro(realpipitredcall3,cont=TRUE, scale=FALSE, main = "Red Call 3: 368493")
+
+spectro(realpipitredcall1,osc=TRUE)
+
+spectro(realpipitredcall2,osc=TRUE)
+
+spectro(realpipitredcall3,osc=TRUE)
+
+```
+
+#Plotting Actual Pipit Recordings (Purple Song)
+
+```{r}
+spectro(realpipitpurplesong1,cont=TRUE, scale=FALSE, main = "Purple Song 1: 134557")
+
+spectro(realpipitpurplesong2,cont=TRUE, scale=FALSE, main = "Purple Song 2: 152971")
+
+spectro(realpipitpurplesong1,osc=TRUE)
+
+spectro(realpipitpurplesong2,osc=TRUE)
+```
+
+#Plotting Actual Pipit Recordings (Purple Call)
+
+```{r}
+spectro(realpipitpurplecall1,cont=TRUE, scale=FALSE, main = "Purple Call 1: 405901")
+
+
+spectro(realpipitpurplecall1,osc=TRUE)
+```
+#Converting mp3 files of "Test Birds from Kasios" to wav files
+
+```{r}
+#Green
+#1, 6, 11, 15
+testpipitgreen1 <- readMP3("data/Test Birds from Kasios/1.mp3")
+#writeWave(testpipitgreen1, "testpipitgreen1.wav", extensible=FALSE)
+
+testpipitgreen6 <- readMP3("data/Test Birds from Kasios/6.mp3")
+#writeWave(testpipitgreen6, "testpipitgreen6.wav", extensible=FALSE)
+
+testpipitgreen11 <- readMP3("data/Test Birds from Kasios/11.mp3")
+#writeWave(testpipitgreen11, "testpipitgreen11.wav", extensible=FALSE)
+
+testpipitgreen15 <- readMP3("data/Test Birds from Kasios/15.mp3")
+#writeWave(testpipitgreen15, "testpipitgreen15.wav", extensible=FALSE)
+
+#Red
+#2, 3, 4, 7, 9, 13, 14
+testpipitred2 <- readMP3("data/Test Birds from Kasios/2.mp3")
+#writeWave(testpipitred2, "testpipitred2.wav", extensible=FALSE)
+
+testpipitred3 <- readMP3("data/Test Birds from Kasios/3.mp3")
+#writeWave(testpipitred3, "testpipitred3.wav", extensible=FALSE)
+
+testpipitred4 <- readMP3("data/Test Birds from Kasios/4.mp3")
+#writeWave(testpipitred4, "testpipitred4.wav", extensible=FALSE)
+
+testpipitred7 <- readMP3("data/Test Birds from Kasios/7.mp3")
+#writeWave(testpipitred7, "testpipitred7.wav", extensible=FALSE)
+
+testpipitred9 <- readMP3("data/Test Birds from Kasios/9.mp3")
+#writeWave(testpipitred9, "testpipitred9.wav", extensible=FALSE)
+
+testpipitred13 <- readMP3("data/Test Birds from Kasios/13.mp3")
+#writeWave(testpipitred13, "testpipitred13.wav", extensible=FALSE)
+
+testpipitred14 <- readMP3("data/Test Birds from Kasios/14.mp3")
+#writeWave(testpipitred14, "testpipitred14.wav", extensible=FALSE)
+
+#Purple
+#5, 8, 10, 12
+
+testpipitpurple5 <- readMP3("data/Test Birds from Kasios/5.mp3")
+#writeWave(testpipitpurple5, "testpipitpurple5.wav", extensible=FALSE)
+
+testpipitpurple8 <- readMP3("data/Test Birds from Kasios/8.mp3")
+#writeWave(testpipitpurple8, "testpipitpurple8.wav", extensible=FALSE)
+
+testpipitpurple10 <- readMP3("data/Test Birds from Kasios/10.mp3")
+#writeWave(testpipitpurple10, "testpipitpurple10.wav", extensible=FALSE)
+
+testpipitpurple12 <- readMP3("data/Test Birds from Kasios/12.mp3")
+#writeWave(testpipitpurple12, "testpipitpurple12.wav", extensible=FALSE)
+
+```
+#Commands to Play Converted Wav Files for test recordings
+
+```{r}
+play(load.wave("testpipitgreen1.wav"))
+```
+
+#Plotting Test Pipit Recordings (Green)
+
+```{r}
+spectro(testpipitgreen1,cont=TRUE, scale=FALSE, main = "Test Green 1")
+
+spectro(testpipitgreen6,cont=TRUE, scale=FALSE, main = "Test Green 6")
+
+spectro(testpipitgreen11,cont=TRUE, scale=FALSE, main = "Test Green 11")
+
+spectro(testpipitgreen15,cont=TRUE, scale=FALSE, main = "Test Green 15")
+
+
+spectro(testpipitgreen1,osc=TRUE)
+
+spectro(testpipitgreen6,osc=TRUE)
+
+spectro(testpipitgreen11,osc=TRUE)
+
+spectro(testpipitgreen15,osc=TRUE)
+```
+
+
+#Plotting Test Pipit Recordings (Red)
+
+```{r}
+spectro(testpipitred2,cont=TRUE, scale=FALSE, main = "Test Red 2")
+
+spectro(testpipitred3,cont=TRUE, scale=FALSE, main = "Test Red 3")
+
+spectro(testpipitred4,cont=TRUE, scale=FALSE, main = "Test Red 4")
+
+spectro(testpipitred7,cont=TRUE, scale=FALSE, main = "Test Red 7")
+
+spectro(testpipitred9,cont=TRUE, scale=FALSE, main = "Test Red 9")
+
+spectro(testpipitred13,cont=TRUE, scale=FALSE, main = "Test Red 13")
+
+spectro(testpipitred14,cont=TRUE, scale=FALSE, main = "Test Red 14")
+
+
+spectro(testpipitred2,osc=TRUE)
+
+spectro(testpipitred3,osc=TRUE)
+
+spectro(testpipitred4,osc=TRUE)
+
+spectro(testpipitred7,osc=TRUE)
+
+spectro(testpipitred9,osc=TRUE)
+
+spectro(testpipitred13,osc=TRUE)
+
+spectro(testpipitred14,osc=TRUE)
+```
+
+#Plotting Test Pipit Recordings (Purple)
+
+```{r}
+spectro(testpipitpurple5,cont=TRUE, scale=FALSE, main = "Test Purple 5")
+
+spectro(testpipitpurple8,cont=TRUE, scale=FALSE, main = "Test Purple 8")
+
+spectro(testpipitpurple10,cont=TRUE, scale=FALSE, main = "Test Purple 10")
+
+spectro(testpipitpurple12,cont=TRUE, scale=FALSE, main = "Test Purple 12")
+
+
+z <- readWave("testpipitpurple8.wav", from = 15, to = 18, units = "seconds")
+spectro(z)
+spectro(testpipitpurple8,cont=TRUE, scale=FALSE)
+
+spectro(testpipitpurple5,osc=TRUE)
+
+spectro(testpipitpurple8,osc=TRUE)
+
+spectro(testpipitpurple10,osc=TRUE)
+
+spectro(testpipitpurple12,osc=TRUE)
+```
+
+
+
